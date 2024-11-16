@@ -2,45 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Whitelist User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>h4x SS Whitelister</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        form { margin: 20px; }
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #1e5799 0%, #2989d8 50%, #207cca 70%, #7db9e8 100%);
+            color: #fff;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 300px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #4CAF50;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #response {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>Whitelist a Roblox User</h1>
-    <form id="whitelistForm">
-        <label for="username">Roblox Username:</label>
-        <input type="text" id="username" name="username" required>
-        <button type="submit">Whitelist</button>
-    </form>
-    <div id="response"></div>
-
-    <script>
-        document.getElementById('whitelistForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const responseDiv = document.getElementById('response');
-
-            try {
-                const response = await fetch('https://your-external-api-endpoint', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username: username })
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    responseDiv.innerHTML = `User ${username} has been whitelisted!`;
-                } else {
-                    responseDiv.innerHTML = `Error: ${result.message}`;
-                }
-            } catch (error) {
-                responseDiv.innerHTML = 'An error occurred while processing your request.';
-            }
-        });
-    </script>
+    <div class="container">
+        <h1>h4x SS Whitelister</h1>
+        <form action="https://your-external-api-endpoint" method="post">
+            <input type="text" name="username" placeholder="Enter Roblox username" required>
+            <button type="submit">Whitelist</button>
+        </form>
+        <div id="response"></div>
+    </div>
 </body>
 </html>
