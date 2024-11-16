@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Whitelist User</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        form { margin: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Whitelist a Roblox User</h1>
+    <form id="whitelistForm">
+        <label for="username">Roblox Username:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit">Whitelist</button>
+    </form>
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('whitelistForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const responseDiv = document.getElementById('response');
+
+            try {
+                const response = await fetch('https://your-external-api-endpoint', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: username })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    responseDiv.innerHTML = `User ${username} has been whitelisted!`;
+                } else {
+                    responseDiv.innerHTML = `Error: ${result.message}`;
+                }
+            } catch (error) {
+                responseDiv.innerHTML = 'An error occurred while processing your request.';
+            }
+        });
+    </script>
+</body>
+</html>
